@@ -7,6 +7,8 @@ Build a RESTful API using FastAPI for a hypothetical book review system.
 
 **Imports:** The code starts by importing necessary modules and functions from various libraries like FastAPI for building APIs, SQLAlchemy for database operations, and some custom modules (database and schemas).
 
+**Testing:** After importing the required modules, it's essential to ensure that all imports are successful by running the application and testing its functionality. Testing can be done manually or using automated testing tools like Postman.
+
 **Database Setup:** It defines functions to interact with the database. `get_db()` sets up a database session, `create_book()` and `create_review()` are for adding new entries to the database, `get_books()` and `get_reviews()` are for fetching books and reviews, `get_book()` retrieves a single book, and `delete_book()` and `delete_review()` are for deleting entries.
 
 **Endpoints:** Here, various endpoints are defined for different operations:
