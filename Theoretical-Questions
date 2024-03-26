@@ -1,0 +1,44 @@
+---
+
+## Question 1: Explain how FastAPI handles asynchronous requests and its benefits over synchronous code in Python
+
+FastAPI leverages asynchronous programming features in Python, primarily using the async and await keywords along with asynchronous functions and coroutines.
+Asynchronous programming allows the server to handle multiple requests concurrently without blocking the execution of other tasks. Here's how FastAPI handles asynchronous requests:
+- Async Functions: FastAPI allows you to define asynchronous request handlers using the async def syntax, enabling you to write non-blocking code.
+- Asynchronous Framework: FastAPI is built on top of Starlette, an asynchronous framework for building web applications in Python. This framework handles asynchronous operations efficiently, allowing for high concurrency and scalability.
+- Async and Await Syntax: FastAPI relies on the async and await keywords to manage asynchronous operations. This syntax allows you to mark certain functions or blocks of code as asynchronous, enabling them to execute concurrently.
+
+**Benefits over synchronous code:**
+- Improved Performance: Asynchronous code allows the server to handle multiple requests simultaneously, leading to better performance and responsiveness, especially in I/O-bound applications where the server spends a lot of time waiting for external resources.
+- Scalability: By handling requests asynchronously, FastAPI can efficiently utilize system resources and scale to handle a large number of concurrent connections, making it suitable for high-traffic web applications.
+- Better Resource Utilization: Asynchronous programming enables efficient utilization of CPU and I/O resources by allowing the server to perform other tasks while waiting for I/O operations to complete, resulting in better resource utilization and overall system efficiency.
+
+---
+
+## Question 2: Describe how dependency injection works in FastAPI and give an example of its practical use.
+
+Dependency injection in FastAPI allows you to declare dependencies for your route handlers and have FastAPI automatically inject them when the route is called. This pattern helps in structuring your application by promoting modularity and reusability
+**Declaration of Dependencies:** You declare dependencies using function parameters in your route handlers. These dependencies can be any Python objects or instances of classes.
+**Automatic Injection:** When a request is received by FastAPI, it examines the dependencies declared in the route handler and automatically resolves them by creating instances or retrieving objects as needed.
+**Dependency Resolution:** FastAPI uses the dependency resolver to resolve dependencies at runtime. It ensures that dependencies are created only once per request and reused across multiple route handlers if necessary.
+
+**Practical Use Example:**
+```python
+from fastapi import Depends, FastAPI
+
+app = FastAPI()
+
+# Dependency
+def get_db_connection():
+    # Code to establish database connection
+    return "Database Connection"
+
+# Route with dependency injection
+@app.get("/")
+async def read_root(db: str = Depends(get_db_connection)):
+    return {"message": "Hello World", "db_connection": db}
+In this example, get_db_connection is a dependency that provides a database connection. When the read_root route is called, FastAPI automatically injects the database connection into the db parameter, allowing the route handler to use the database connection without explicitly creating it.
+
+
+
+
