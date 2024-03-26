@@ -37,7 +37,8 @@ def get_db_connection():
 @app.get("/")
 async def read_root(db: str = Depends(get_db_connection)):
     return {"message": "Hello World", "db_connection": db}
-In this example, get_db_connection is a dependency that provides a database connection. When the read_root route is called, FastAPI automatically injects the database connection into the db parameter, allowing the route handler to use the database connection without explicitly creating it.
+
+** In this example, get_db_connection is a dependency that provides a database connection. When the read_root route is called, FastAPI automatically injects the database connection into the db parameter, allowing the route handler to use the database connection without explicitly creating it.
 
 
 
